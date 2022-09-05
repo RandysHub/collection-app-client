@@ -6,11 +6,11 @@ import { useNavigate } from 'react-router-dom'
 
 export default function Dashboard() {
     const nav = useNavigate()
-    const [quote, setQuote] = useState('');
-    const [tempQuote, setTempQuote] = useState();
+    const [library, setLibrary] = useState('');
+    const [tempLibrary, setTempLibrary] = useState();
 
-    const populateQuote = async () => {
-        const req = await fetch('http://localhost:3001/api/quote', {
+    const populateLibrary = async () => {
+        const req = await fetch('http://localhost:3001/api/library', {
             headers: {
                 'x-access-token': localStorage.getItem('token')
 
@@ -19,7 +19,7 @@ export default function Dashboard() {
         const data = await req.json()
         console.log(data)
         if(data.status === 'ok'){
-            setQuote(data.quote)
+            setLibrary(data.library)
         }else{
             alert(data.error)
         }
@@ -35,15 +35,15 @@ export default function Dashboard() {
                 nav('/')
 
             } else {
-                populateQuote()
+                populateLibrary()
             }
         }
     }, [])
 
-    async function updateQuote(event){
+    async function updateLibrary(event){
         event.preventDefault()
 
-        const req = await fetch('http://localhost:3001/api/quote', {
+        const req = await fetch('http://localhost:3001/api/library', {
             method:'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ export default function Dashboard() {
 
             },
             body:JSON.stringify({
-                quote:tempQuote,
+                library:tempLibrary,
             }),
 
             
@@ -59,8 +59,8 @@ export default function Dashboard() {
         const data = await req.json()
         console.log(data)
         if(data.status === 'ok'){
-            setQuote(tempQuote)
-            setTempQuote('')
+            setLibrary(tempLibrary)
+            setTempLibrary('')
         }else{
             alert(data.error)
         }
@@ -70,11 +70,11 @@ export default function Dashboard() {
 
     return (
         <div>
-            <h1>Your quote: {quote || 'No quote found'} </h1>
-            <form onSubmit={updateQuote}>
-                <input type='text' placeholder='Quote'
-                value={tempQuote}
-                onChange={e => setTempQuote(e.target.value)}/>
+            <h1>Your quote: {library || 'No quote found'} </h1>
+            <form onSubmit={updateLibrary}>
+                <input type='text' placeholder='library'
+                value={tempLibrary}
+                onChange={e => setTempLibrary(e.target.value)}/>
                
                <input type='submit' value='Update'/>
             </form>
