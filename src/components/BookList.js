@@ -13,11 +13,12 @@ function BookList(props) {
                     return (
                         <div className="col-sm-3">
                             <BookCard
+
                                 key={i}
-                                image={book.volumeInfo.imageLinks.thumbnail}
+                                id={book.id}
+                                image={book.volumeInfo.imageLinks.smallThumbnail}
                                 title={book.volumeInfo.title}
-                                author={book.volumeInfo.author}
-                                published={book.publishedDate} />
+                                author={book.volumeInfo.author} />
                         </div >
                     )
                 })
