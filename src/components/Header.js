@@ -5,7 +5,7 @@ function Header() {
         <a href="/books" className="navbar-brand mb-0 h1">
           <img
             className="d-inline-block align-top"
-            src="https://toppng.com/uploads/preview/experience-the-discussion-online-library-book-logo-11562996058ru4peza6zq.png"
+            src="https://www.pngitem.com/pimgs/m/300-3008868_thumb-image-black-and-white-book-logo-design.png"
             width={30}
             height={30}
           />
